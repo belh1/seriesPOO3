@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { SerieService } from 'src/app/services/services.page';
+import { SerieService } from '../../services/services.page';
 
 
 @Component({
@@ -23,17 +23,17 @@ export class CadastrarPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.form_cadastrar = this.FormBuilder.group({
-      nome: ["", [Validators.required]],
-      autor: ["", [Validators.required]],
-      episodio: ["", [Validators.required]],
-      genero: ["", [Validators.required]],
-      sinopse: ["", [Validators.required]],
-      data_lancamento: ["", [Validators.required]],
-      temporada: ["", [Validators.required]],
-      plataforma: ["", [Validators.required]],
-    });
     this.data = new Date().toISOString();
+    this.form_cadastrar = this.FormBuilder.group({
+      nome: ['', [Validators.required]],
+      autor: ['', [Validators.required]],
+      episodio: ['', [Validators.required]],
+      genero: ['', [Validators.required]],
+      sinopse: ['', [Validators.required]],
+      data_lancamento: ['', [Validators.required]],
+      temporada: ['', [Validators.required]],
+      plataforma: ['', [Validators.required]],
+    });
   }
 
   get errorControl() {
