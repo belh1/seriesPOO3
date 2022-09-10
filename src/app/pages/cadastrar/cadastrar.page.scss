@@ -1,0 +1,45 @@
+ion-list{
+  height: 100vh;
+  background-image: url('../img/fundoCadastrar.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+ion-item{
+  max-width: 450px;
+  margin:0 auto;//coloca no meio
+  margin-bottom: 18px;//separa os itens
+  outline: none;
+  padding: 2px;
+  font-size: 18px;
+  border-radius: 40px;//borda do botao
+}
+.caixa{
+  background-color:#000101a8;
+  padding: 50px;
+  color: #000000;
+  max-width: 450px;
+  margin:0 auto 80px;//coloca no meio
+}
+.a{
+  top: 45%;
+  transform: translateY(-45%);
+  text-align: center ;
+  color: rgba(255,255,255,0.75);//branco co opacidaade
+  font-family: 'Londrina+Solid';
+  font-size: 40px;
+  white-space:nowrap;//nao quebra
+  overflow:hidden;
+
+  animation:sumi 4s steps(20)1s normal both;
+}
+@keyframes sumi{
+  from{
+    width:0;
+  }
+  to{
+    width:8em;
+  }
+}
+
+

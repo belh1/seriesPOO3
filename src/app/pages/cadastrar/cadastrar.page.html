@@ -1,0 +1,91 @@
+
+<ion-content >
+  <ion-list >
+    <main class="caixa">
+      <div class = "a">Cadastre um Filme</div>
+      <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()"></form>
+      <ion-item>
+        <ion-input placeholder="Nome" formControlName="nome"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="((errorControl.nome.touched) || (errorControl.nome.dirty)&& errorControl.nome.errors)">
+        <span *ngIf="errorControl.nome.errors?.required">
+          Nome é Obrigatório!
+        </span>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="episodios"  formControlName ="episodios"></ion-input>
+      </ion-item>
+    <ion-item *ngIf="((errorControl.episodios.touched) || (errorControl.episodios.dirty)&& errorControl.episodios.errors)">
+      <span *ngIf="errorControl.episodios.errors?.required">
+        Numero de episodios é Obrigatório!
+      </span>
+    </ion-item>
+
+    <ion-item>
+    <ion-select placeholder="Selecione genero"  formControlName ="genero">
+        <ion-select-option value="terror">terror</ion-select-option>
+        <ion-select-option value="fantasia">fantasia</ion-select-option>
+        <ion-select-option value="comedia">comedia</ion-select-option>
+        <ion-select-option value="drama">drama</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.genero.touched) || (errorControl.genero.dirty)&& errorControl.genero.errors)">
+      <span *ngIf="errorControl.genero.errors?.required">
+        Genero é Obrigatório!
+      </span>
+    </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="sinopse" formControlName="sinopse"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="((errorControl.sinopse.touched) || (errorControl.sinopse.dirty)&& errorControl.sinopse.errors)">
+        <span *ngIf="errorControl.sinopse.errors?.required">
+          Uma preve descrição da serie é Obrigatório!
+        </span>
+      </ion-item>
+
+      <ion-item>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime" max="{{data}}"
+          presentation="date"  formControlName ="data_lancamento"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+
+        <ion-item>
+          <ion-select placeholder="Selecione quantas temporadas"  formControlName ="temporadas">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="((errorControl.genero.touched) || (errorControl.genero.dirty)&& errorControl.genero.errors)">
+            <span *ngIf="errorControl.genero.errors?.required">
+              numero de temporadas é Obrigatório!
+            </span>
+          </ion-item>
+
+          <ion-item>
+            <ion-input placeholder="plataforma" formControlName="nome"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="((errorControl.plataforma.touched) || (errorControl.plataforma.dirty)&& errorControl.plataforma.errors)">
+            <span *ngIf="errorControl.plataforma.errors?.required">
+              A plataforma é Obrigatório!
+            </span>
+          </ion-item>
+      
+  <ion-button expand="block" (click)="cadastrar()">Cadastrar</ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  </ion-fab>
+</main>
+  <ion-fab-button color="primary" (click)="irParaHome()">
+    <ion-icon name="home"></ion-icon>
+  </ion-fab-button>
+
+  </ion-list>
+
+</ion-content>
