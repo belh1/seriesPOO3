@@ -51,15 +51,15 @@
      </ion-item>
 
         <ion-item>
-          <ion-select placeholder="Selecione quantas temporadas"  formControlName ="temporadas">
+          <ion-select placeholder="Selecione quantas temporadas"  formControlName ="temporada">
               <ion-select-option value="1">1</ion-select-option>
               <ion-select-option value="2">2</ion-select-option>
               <ion-select-option value="3">3</ion-select-option>
               <ion-select-option value="4">4</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item *ngIf="((errorControl.genero.touched) || (errorControl.genero.dirty)&& errorControl.genero.errors)">
-            <span *ngIf="errorControl.genero.errors?.required">
+          <ion-item *ngIf="((errorControl.temporada.touched) || (errorControl.temporada.dirty)&& errorControl.temporada.errors)">
+            <span *ngIf="errorControl.temporada.errors?.required">
               numero de temporadas é Obrigatório!
             </span>
           </ion-item>
