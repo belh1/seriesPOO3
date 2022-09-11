@@ -1,77 +1,86 @@
 
 <ion-content >
-  <ion-list >
+  <ion-list  >
     <main class="caixa">
       <div class = "a">Cadastre um Filme</div>
-      <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()"></form>
-      <ion-item>
+      <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()">
+      <div>
         <ion-input placeholder="Nome" formControlName="nome"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="((errorControl.nome.touched) || (errorControl.nome.dirty)&& errorControl.nome.errors)">
-        <span *ngIf="errorControl.nome.errors?.required">
-          Nome é Obrigatório!
-        </span>
-      </ion-item>
-
-      <ion-item>
-        <ion-input placeholder="episodios"  formControlName ="episodios" type="number"></ion-input>
-      </ion-item>
-    <ion-item *ngIf="((errorControl.episodios.touched) || (errorControl.episodios.dirty)&& errorControl.episodios.errors)">
-      <span *ngIf="errorControl.episodios.errors?.required">
-        Numero de episodios é Obrigatório!
-      </span>
-    </ion-item>
-
-    <ion-item>
+        <div *ngIf="((errorControl.nome.touched) || (errorControl.nome.dirty)&& errorControl.nome.errors)">
+          <span *ngIf="errorControl.nome.errors?.required">
+            Nome é Obrigatório!
+          </span>
+        </div>
+      </div>
+      <div>
+        <ion-input placeholder="Autor" formControlName="autor"></ion-input>
+        <div *ngIf="((errorControl.autor.touched) || (errorControl.autor.dirty)&& errorControl.autor.errors)">
+          <span *ngIf="errorControl.autor.errors?.required">
+            Autor é Obrigatório!
+          </span>
+        </div>
+      </div>
+    
+      <div>
+        <ion-input placeholder="Episodios"  formControlName ="episodio"></ion-input>
+        <div *ngIf="((errorControl.episodio.touched) || (errorControl.episodio.dirty)&& errorControl.episodio.errors)">
+          <span *ngIf="errorControl.episodio.errors?.required">
+            Numero de episodios é Obrigatório!
+          </span>
+        </div>
+      </div>
+      
+    <div>
     <ion-select placeholder="Selecione genero"  formControlName ="genero">
         <ion-select-option value="terror">terror</ion-select-option>
         <ion-select-option value="fantasia">fantasia</ion-select-option>
         <ion-select-option value="comedia">comedia</ion-select-option>
         <ion-select-option value="drama">drama</ion-select-option>
       </ion-select>
-    </ion-item>
-    <ion-item *ngIf="((errorControl.genero.touched) || (errorControl.genero.dirty)&& errorControl.genero.errors)">
+    <div *ngIf="((errorControl.genero.touched) || (errorControl.genero.dirty)&& errorControl.genero.errors)">
       <span *ngIf="errorControl.genero.errors?.required">
         Genero é Obrigatório!
       </span>
-    </ion-item>
+      </div>
+    </div>
 
-      <ion-item>
-        <ion-input placeholder="sinopse" formControlName="sinopse"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="((errorControl.sinopse.touched) || (errorControl.sinopse.dirty)&& errorControl.sinopse.errors)">
+      <div>
+        <textarea placeholder="Sinopse" formControlName="sinopse"></textarea>
+      <div *ngIf="((errorControl.sinopse.touched) || (errorControl.sinopse.dirty)&& errorControl.sinopse.errors)">
         <span *ngIf="errorControl.sinopse.errors?.required">
           Uma preve descrição da serie é Obrigatório!
         </span>
-      </ion-item>
+      </div>
+    </div>
 
-     <ion-item>
-     <ion-label position="floating">Lancamento</ion-label>
-     <ion-input type="date"></ion-input>
-     </ion-item>
+      <div>
+       <ion-label position="floating">Data de lancamento</ion-label>
+       <ion-input type="date"></ion-input>
+      </div>
 
-        <ion-item>
-          <ion-select placeholder="Selecione quantas temporadas"  formControlName ="temporada">
+        <div>
+          <ion-select placeholder="Selecione temporada"  formControlName ="temporada">
               <ion-select-option value="1">1</ion-select-option>
               <ion-select-option value="2">2</ion-select-option>
               <ion-select-option value="3">3</ion-select-option>
               <ion-select-option value="4">4</ion-select-option>
             </ion-select>
-          </ion-item>
-          <ion-item *ngIf="((errorControl.temporada.touched) || (errorControl.temporada.dirty)&& errorControl.temporada.errors)">
+          <div *ngIf="((errorControl.temporada.touched) || (errorControl.temporada.dirty)&& errorControl.temporada.errors)">
             <span *ngIf="errorControl.temporada.errors?.required">
               numero de temporadas é Obrigatório!
             </span>
-          </ion-item>
+          </div>
+        </div>
 
-          <ion-item>
-            <ion-input placeholder="plataforma" formControlName="plataforma"></ion-input>
-          </ion-item>
-          <ion-item *ngIf="((errorControl.plataforma.touched) || (errorControl.plataforma.dirty)&& errorControl.plataforma.errors)">
+          <div>
+            <ion-input placeholder="Plataforma" formControlName="plataforma"></ion-input>
+          <div *ngIf="((errorControl.plataforma.touched) || (errorControl.plataforma.dirty)&& errorControl.plataforma.errors)">
             <span *ngIf="errorControl.plataforma.errors?.required">
               A plataforma é Obrigatório!
             </span>
-          </ion-item>
+          </div>
+        </div>
+        </form>
       
   <ion-button expand="block" (click)="cadastrar()">Cadastrar</ion-button>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
