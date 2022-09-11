@@ -16,7 +16,7 @@
       <ion-input disabled ="{{edicao}}" placeholder="autor"[(ngModel)]="autor"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input disabled ="{{edicao}}" placeholder="episodios" [(ngModel)]="episodios"></ion-input>
+      <ion-input disabled ="{{edicao}}" placeholder="episodios" [(ngModel)]="episodios" type="number"></ion-input>
     </ion-item>
     <ion-item>
       <ion-select placeholder="Selecione genero" [(ngModel)]="genero">
@@ -30,16 +30,11 @@
       <ion-input placeholder="sinopse" [(ngModel)]="sinopse"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime disabled="{{edicao}}" id="datetime" max="{{data}}"
-        presentation="date" [(ngModel)]="data_lancamento"></ion-datetime>
-          </ng-template>
-      </ion-modal>
-    </ion-item>
+     <ion-label position="floating">Lancamento</ion-label>
+     <ion-input type="date"></ion-input>
+     </ion-item>
     <ion-item>
-      <ion-select disabled ="{{edicao}}"placeholder="Selecione quantas temporadas" [(ngModel)]="temporadas">
+      <ion-select disabled ="{{edicao}}"placeholder="Selecione quantas temporadas" [(ngModel)]="temporada">
           <ion-select-option value="1">1</ion-select-option>
           <ion-select-option value="2">2</ion-select-option>
           <ion-select-option value="3">3</ion-select-option>
