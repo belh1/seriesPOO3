@@ -5,15 +5,39 @@ ion-list{
   background-size: cover;
   background-repeat: no-repeat;
 }
-ion-item{
-  max-width: 450px;
+ion-input,ion-select,textarea{
+  height: 50px;
+  width: 100%;
   margin:0 auto;//coloca no meio
-  margin-bottom: 18px;//separa os itens
+  margin-bottom: 16px;//separa os itens
   outline: none;
-  padding: 2px;
+  color: #fff;
+  padding: 1px;
+  background-color:#333;
   font-size: 18px;
-  border-radius: 40px;//borda do botao
+  border-radius:5px;
 }
+ion-label{
+  color: #fff;
+}
+ion-input:hover{
+  background-color: #444;
+}
+ion-select:hover{
+  background-color: #444;
+}
+ion-button:hover{
+  background-color: #fc1722;
+}
+
+textarea:hover{
+  background-color: #444;
+}
+
+span{
+  color:#e71313
+}
+
 .caixa{
   background-color:#000101a8;
   padding: 50px;
