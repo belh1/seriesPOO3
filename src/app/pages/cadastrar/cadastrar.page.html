@@ -14,7 +14,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-input placeholder="episodios"  formControlName ="episodios"></ion-input>
+        <ion-input placeholder="episodios"  formControlName ="episodios" type="number"></ion-input>
       </ion-item>
     <ion-item *ngIf="((errorControl.episodios.touched) || (errorControl.episodios.dirty)&& errorControl.episodios.errors)">
       <span *ngIf="errorControl.episodios.errors?.required">
@@ -45,15 +45,10 @@
         </span>
       </ion-item>
 
-      <ion-item>
-        <ion-datetime-button datetime="datetime"></ion-datetime-button>
-        <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime id="datetime" max="{{data}}"
-          presentation="date"  formControlName ="data_lancamento"></ion-datetime>
-            </ng-template>
-          </ion-modal>
-        </ion-item>
+     <ion-item>
+     <ion-label position="floating">Lancamento</ion-label>
+     <ion-input type="date"></ion-input>
+     </ion-item>
 
         <ion-item>
           <ion-select placeholder="Selecione quantas temporadas"  formControlName ="temporadas">
@@ -70,7 +65,7 @@
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="plataforma" formControlName="nome"></ion-input>
+            <ion-input placeholder="plataforma" formControlName="plataforma"></ion-input>
           </ion-item>
           <ion-item *ngIf="((errorControl.plataforma.touched) || (errorControl.plataforma.dirty)&& errorControl.plataforma.errors)">
             <span *ngIf="errorControl.plataforma.errors?.required">
