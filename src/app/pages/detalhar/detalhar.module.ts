@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormControl} from '@angular/forms';
 
 
 import { IonicModule } from '@ionic/angular';
@@ -14,6 +15,7 @@ import { DetalharPage } from './detalhar.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    FormControl,
     ReactiveFormsModule,
     DetalharPageRoutingModule
   ],
