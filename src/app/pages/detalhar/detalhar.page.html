@@ -1,61 +1,102 @@
 
-<ion-content>
 
+<ion-content >
   <ion-list>
     <main class="caixa">
-      <div class = "a">Detalhe da Série</div>
-  <ion-item>
-    <ion-label>Habilitar Edição</ion-label>
-    <ion-toggle color="sucess" 
-    (ionChange)="alterarEdicao()"></ion-toggle>
-  </ion-item>
-    <ion-item>
-      <ion-input disabled ="{{edicao}}" placeholder="nome" [(ngModel)]="nome"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input disabled ="{{edicao}}" placeholder="autor"[(ngModel)]="autor"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input disabled ="{{edicao}}" placeholder="episodios" [(ngModel)]="episodios" type="number"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder="Selecione genero" [(ngModel)]="genero">
-          <ion-select-option value="terror">terror</ion-select-option>
-          <ion-select-option value="fantasia">fantasia</ion-select-option>
-          <ion-select-option value="comedia">comedia</ion-select-option>
-          <ion-select-option value="drama">drama</ion-select-option>
-        </ion-select>
-      </ion-item>
-    <ion-item>
-      <ion-input placeholder="sinopse" [(ngModel)]="sinopse"></ion-input>
-    </ion-item>
-    <ion-item>
-     <ion-label position="floating">Lancamento</ion-label>
-     <ion-input type="date"></ion-input>
-     </ion-item>
-    <ion-item>
-      <ion-select disabled ="{{edicao}}"placeholder="Selecione quantas temporadas" [(ngModel)]="temporada">
-          <ion-select-option value="1">1</ion-select-option>
-          <ion-select-option value="2">2</ion-select-option>
-          <ion-select-option value="3">3</ion-select-option>
-          <ion-select-option value="4">4</ion-select-option>
-        </ion-select>
-      </ion-item>
-    <ion-item>
-      <ion-input placeholder="plataforma" formControlName="plataforma" [(ngModel)]="plataforma"></ion-input>
-    </ion-item>
-  
+     <div class = "a">Detalhe da Série</div>
+     <div>
+      <ion-label>Habilitar Edição</ion-label>
+       <ion-toggle color="sucess" 
+       (ionChange)="alterarEdicao()"></ion-toggle>
+      </div>
+      <div>
+       <ion-input  disabled ="{{edicao}}"  placeholder="Nome" [(ngModel)]="nome"></ion-input>
+        <div *ngIf="((errorControl.nome.touched) || (errorControl.nome.dirty)&& errorControl.nome.errors)">
+          <span *ngIf="errorControl.nome.errors?.required">
+            Nome é Obrigatório!
+          </span>
+        </div>
+      </div>
+      <div>
+        <ion-input  disabled ="{{edicao}}" placeholder="Autor" [(ngModel)]="autor"></ion-input>
+        <div *ngIf="((errorControl.autor.touched) || (errorControl.autor.dirty)&& errorControl.autor.errors)">
+          <span *ngIf="errorControl.autor.errors?.required">
+            Autor é Obrigatório!
+          </span>
+        </div>
+      </div>
+    
+      <div>
+        <ion-input  disabled ="{{edicao}}"  placeholder="Episodios"  [(ngModel)]="episodio" type="number"></ion-input>
+        <div *ngIf="((errorControl.episodio.touched) || (errorControl.episodio.dirty)&& errorControl.episodio.errors)">
+          <span *ngIf="errorControl.episodio.errors?.required">
+            Numero de episodios é Obrigatório!
+          </span>
+        </div>
+      </div>
+      
+    <div>
+    <ion-select  disabled ="{{edicao}}" placeholder="Selecione genero"  [(ngModel)] ="genero">
+        <ion-select-option value="terror">terror</ion-select-option>
+        <ion-select-option value="fantasia">fantasia</ion-select-option>
+        <ion-select-option value="comedia">comedia</ion-select-option>
+        <ion-select-option value="drama">drama</ion-select-option>
+      </ion-select>
+    <div *ngIf="((errorControl.genero.touched) || (errorControl.genero.dirty)&& errorControl.genero.errors)">
+      <span *ngIf="errorControl.genero.errors?.required">
+        Genero é Obrigatório!
+      </span>
+      </div>
+    </div>
 
-  <ion-button disabled ="{{edicao}}" expand="block" shape= "round" (click)="editar()">Salvar</ion-button>
-  <ion-button disabled ="{{edicao}}" expand="block" shape= "round" (click)="excluir()" color="danger">Excluir</ion-button>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-</ion-fab>
+      <div>
+        <textarea  disabled ="{{edicao}}" placeholder="Sinopse" [(ngModel)]="sinopse"></textarea>
+      <div *ngIf="((errorControl.sinopse.touched) || (errorControl.sinopse.dirty)&& errorControl.sinopse.errors)">
+        <span *ngIf="errorControl.sinopse.errors?.required">
+          Uma preve descrição da serie é Obrigatório!
+        </span>
+      </div>
+    </div>
+
+      <div>
+       <ion-label position="floating">Data de lancamento</ion-label>
+       <ion-input  disabled ="{{edicao}}"  type="date"></ion-input>
+      </div>
+
+        <div>
+          <ion-select  disabled ="{{edicao}}"  placeholder="Selecione temporada"  [(ngModel)] ="temporada">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+            </ion-select>
+          <div *ngIf="((errorControl.temporada.touched) || (errorControl.temporada.dirty)&& errorControl.temporada.errors)">
+            <span *ngIf="errorControl.temporada.errors?.required">
+              numero de temporadas é Obrigatório!
+            </span>
+          </div>
+        </div>
+
+          <div>
+            <ion-input  disabled ="{{edicao}}" placeholder="Plataforma" [(ngModel)]="plataforma"></ion-input>
+          <div *ngIf="((errorControl.plataforma.touched) || (errorControl.plataforma.dirty)&& errorControl.plataforma.errors)">
+            <span *ngIf="errorControl.plataforma.errors?.required">
+              A plataforma é Obrigatório!
+            </span>
+          </div>
+        </div>
+      
+      
+        <ion-button disabled ="{{edicao}}" expand="block" shape= "round" (click)="editar()">Salvar</ion-button>
+        <ion-button disabled ="{{edicao}}" expand="block" shape= "round" (click)="excluir()" color="danger">Excluir</ion-button>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed"></ion-fab>
+      
 </main>
-    <ion-fab-button color="primary" (click)="irParaHome()">
-      <ion-icon name="home"></ion-icon>
-    </ion-fab-button>
-  </ion-list>
- 
-</ion-content>
+  <ion-fab-button color="primary" (click)="irParaHome()">
+    <ion-icon name="home"></ion-icon>
+  </ion-fab-button>
 
+  </ion-list>
+
+</ion-content>
 
