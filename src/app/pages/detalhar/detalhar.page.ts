@@ -78,7 +78,7 @@ if(this.serieService.editar(
 )
 ){
 this.router.navigate(['/home']);
-this.presentAlert('Disciplina', 'Sucesso', 'A disciplina foi editada!');
+this.presentAlert('Catalogo', 'Sucesso', 'Catalogo foi editado!');
 }else{
  this.presentAlert("Catalogo", "ERRO", "produto nao encontrado!");
 
