@@ -68,8 +68,9 @@ if(!this.form_detalhar.valid){
     this.presentAlert("Catalogo", "Sucesso", "Edição efetuado com Sucesso!");
     }else{
 if(this.serieService.editar(
- this.form_detalhar.value.nome,
-   this.form_detalhar.value.autor,
+  this.serie,
+  this.form_detalhar.value.nome,
+  this.form_detalhar.value.autor,
   this.form_detalhar.value.episodio,
   this.form_detalhar.value.genero,
   this.form_detalhar.value.sinopse,
@@ -116,115 +117,37 @@ irParaHome(){
 
 
 async presentAlert(header: string, subHeader: string, message: string) {
-
-
-
-
-   const alert = await this.alertController.create({
-
-
-     header: header,
-
-
-     subHeader: subHeader,
-
-
-     message: message,
-
-
-     buttons: ['OK'],
-
-
-   });
-
-
-
-
-
-
-
-   await alert.present();
-
-
- }
-
-
-
-
-
-
-
- async presentAlertConfirm(header: string, subHeader: string, message: string) {
-
-
-   const alert = await this.alertController.create({
-
-
-     header: header,
-
-
-     subHeader: subHeader,
-
-
-     message: message,
-
-
-     buttons: [
-
-
-       {
-
-
-         text: 'Cancelar',
-
-
-         role: 'cancel',
-
-
-         handler: () => {
-
-
-         },
-
-
-       },
-
-
-       {
-
-
-         text: 'Confirmar',
-
-
-         role: 'confirm',
-
-
-         handler: () => {
-
-
-           this.excluirContato();
-
-
-         },
-
-
-       },
-
-
-     ],
-
-
-   });
-
-
-   await alert.present();
-
-
- }
-
-
+    const alert = await this.alertController.create({
+      header: header,
+      subHeader: subHeader,
+      message: message,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
+  async presentAlertConfirm(header: string, subHeader: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      subHeader: subHeader,
+      message: message,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Confirmar',
+          role: 'confirm',
+          handler: () => {
+            this.excluirContato();
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
 }
-
-
- 
-
