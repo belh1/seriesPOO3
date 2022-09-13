@@ -73,7 +73,7 @@ if(this.serieService.editar(
   this.form_detalhar.value.episodio,
   this.form_detalhar.value.genero,
   this.form_detalhar.value.sinopse,
-  this.form_detalhar.value.temporad,
+  this.form_detalhar.value.temporada,
   this.form_detalhar.value.plataforma
 )
 ){
