@@ -95,7 +95,7 @@ this.presentAlert('Catalogo', 'Sucesso', 'A serie foi editada!');
     );
   }
 
-  private excluirContato() {
+  private excluirSerie() {
     if (this.serieService.excluir(this.serie)) {
       this.presentAlert('Catalogo', 'Excluir', 'Exclusão Realizada');
       this.router.navigate(['/home']);
@@ -116,97 +116,41 @@ irParaHome(){
 
 
 
-async presentAlert(header: string, subHeader: string, message: string) {
 
 
+  async presentAlert(cabecalho : string, subcabecalho: string,mensagem : string) {
+    const alert = await this.alertController.create({
+      header: cabecalho,
+      subHeader: subcabecalho,
+      message: mensagem,
+      buttons: ['OK'],
+    });
 
+    await alert.present();
+  }
+  async presentAlertConfirm(cabecalho : string, subcabecalho: string,mensagem : string) {
+    const alert = await this.alertController.create({
+      header: cabecalho,
+      subHeader: subcabecalho,
+      message: mensagem,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Confirmar',
+          role: 'confirm',
+          handler: () => {
+            this.excluirSerie();
+          },
+        },
+      ],
+    });
 
-   const alert = await this.alertController.create({
-
-
-     header: header,
-
-
-     subHeader: subHeader,
-     message: message,
-
-     buttons: ['OK'],
-   });
-   await alert.present();
-
- }
-
- async presentAlertConfirm(header: string, subHeader: string, message: string) {
-
-
-   const alert = await this.alertController.create({
-
-
-     header: header,
-
-
-     subHeader: subHeader,
-
-
-     message: message,
-
-
-     buttons: [
-
-
-       {
-
-
-         text: 'Cancelar',
-
-
-         role: 'cancel',
-
-
-         handler: () => {
-
-
-         },
-
-
-       },
-
-
-       {
-
-
-         text: 'Confirmar',
-
-
-         role: 'confirm',
-
-
-         handler: () => {
-
-
-           this.excluirContato();
-
-
-         },
-
-
-       },
-
-
-     ],
-
-
-   });
-
-
-   await alert.present();
-
+    await alert.present();
+  }
 
  }
-
-
-}
-
-
- 
-
