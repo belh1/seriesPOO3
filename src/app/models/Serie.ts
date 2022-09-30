@@ -7,6 +7,7 @@ export class Serie {
     private _temporada: number;
     private _plataforma: string;
     private _id: any;
+    private _downloadURL : any;
   
     constructor(
       nome: string,
@@ -84,6 +85,13 @@ export class Serie {
   
     public set plataforma(plataforma: string) {
       this._plataforma = plataforma;
+    }
+    public set downloadURL(downloadURL : any){
+      this._downloadURL = downloadURL;
+   }
+  
+    public get downloadURL(){
+      return this._downloadURL;
     }
   
     

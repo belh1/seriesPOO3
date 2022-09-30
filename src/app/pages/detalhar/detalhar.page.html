@@ -1,4 +1,7 @@
 <ion-content>
+    <ion-avatar>
+      <ion-img src={{serie.downloadURL}}></ion-img>
+    </ion-avatar>
   <ion-list>
     <main class="caixa">
       <div class="a">Detalhe da Série</div>
@@ -80,6 +83,11 @@
               A plataforma é Obrigatório!
             </span>
           </div>
+          <ion-item>
+            <ion-button disabled="{{edicao}}" size="small" style="height: 40px;" shape="round">
+              <input type="file"  (change)="uploadFile($event.target)" />
+            </ion-button>
+          </ion-item>
         </div>
         <ion-button disabled="{{edicao}}" expand="block" (click)="editar()" >Editar</ion-button>
         <ion-button disabled="{{edicao}}" expand="block" (click)="excluir()">Excluir</ion-button>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { SerieService } from '../../services/services.page';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { SerieFirebaseService } from 'src/app/service/serie-firebase.service';
+
 
 @Component({
   selector: 'app-cadastrar',
@@ -13,11 +14,13 @@ export class CadastrarPage implements OnInit {
   data: string;
   form_cadastrar: FormGroup;
   isSubmitted: boolean = false;
+  imagem:any;
 
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private serieService: SerieService,
+    private loadingCtrl: LoadingController,
+    private serieSF: SerieFirebaseService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -31,7 +34,12 @@ export class CadastrarPage implements OnInit {
       sinopse: ["", [Validators.required]],
       temporada: ["", [Validators.required]],
       plataforma: ["", [Validators.required]],
+      imagem:["", [Validators.required]]
     });
+  }
+
+  uploadFile(imagem : any){
+    this.imagem = imagem.files;
   }
 
   get errorControl() {
@@ -49,9 +57,19 @@ export class CadastrarPage implements OnInit {
   }
 
   private cadastrar() {
-    this.serieService.inserir(this.form_cadastrar.value);
-    this.presentAlert('Catalogo', 'Sucesso', 'Dados validos!');
-    this.router.navigate(['/home']);
+     this.showLoading("Aguarde", 10000)
+    this.serieSF
+    .enviarImagem(this.imagem, this.form_cadastrar.value)
+    .then(()=>{
+      this.loadingCtrl.dismiss();
+      this.presentAlert('Catalogo', 'Sucesso', 'Dados validos!');
+      this.router.navigate(['/home']);
+    })
+    .catch((error)=>{
+      this.loadingCtrl.dismiss();
+      this.presentAlert("Catalogo", "Erro", "Erro ao cadastrar");
+      console.log(error);
+    })
   }
 
   async presentAlert(header: string, subHeader: string, massage: string) {
@@ -66,6 +84,15 @@ export class CadastrarPage implements OnInit {
   }
   irParaHome(){
     this.router.navigate(["/home"]);
+  }
+
+  async showLoading(mensagem : string, duracao: number) {
+    const loading = await this.loadingCtrl.create({
+      message: mensagem,
+      duration: duracao,
+    });
+
+    loading.present();
   }
 
 }

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Serie } from 'src/app/models/serie';
-import { SerieService } from 'src/app/services/services.page';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SerieFirebaseService } from 'src/app/service/serie-firebase.service';
 
 
 @Component({
@@ -17,16 +18,18 @@ export class DetalharPage implements OnInit {
   edicao: boolean = true;
   form_detalhar: FormGroup;
   isSubmitted: boolean = false;
+  imagem: any;
 
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private serieService: SerieService,
+    private serieFS: SerieFirebaseService,
     private formBuilder: FormBuilder
   ) {}
 
 
   ngOnInit() {
+    console.log("imagem " + this.imagem);
     const nav = this.router.getCurrentNavigation();
     this.serie = nav.extras.state.objeto;
     this.data = new Date().toISOString();
@@ -37,8 +40,10 @@ export class DetalharPage implements OnInit {
     genero: [this.serie.genero, [Validators.required]],
     sinopse: [this.serie.sinopse, [Validators.required]],
     temporada: [this.serie.temporada, [Validators.required]],
-    plataforma: [this.serie.plataforma, [Validators.required]]
+    plataforma: [this.serie.plataforma, [Validators.required]],
+    downloadURL:[this.serie.downloadURL]
   }); 
+  console.log(this.serie.downloadURL);
 }
 
   get errorControl() {
@@ -63,27 +68,7 @@ export class DetalharPage implements OnInit {
     }
   }
 
-     editar(){
-if(!this.form_detalhar.valid){
-    this.presentAlert("Catalogo", "Error", "todos os campos sao obrigatorios!");
-    }else{
-if(this.serieService.editar(
-  this.serie,
-  this.form_detalhar.value.nome,
-  this.form_detalhar.value.autor,
-  this.form_detalhar.value.episodio,
-  this.form_detalhar.value.genero,
-  this.form_detalhar.value.sinopse,
-  this.form_detalhar.value.temporada,
-  this.form_detalhar.value.plataforma
-)
-){
-this.router.navigate(['/home']);
-this.presentAlert('Catalogo', 'Sucesso', 'A serie foi editada!');
-}else{
- this.presentAlert("Catalogo", "ERRO", "produto nao encontrado!");
-
-}}}
+  editar(){}
 
 
 
@@ -95,44 +80,38 @@ this.presentAlert('Catalogo', 'Sucesso', 'A serie foi editada!');
     );
   }
 
-  private excluirSerie() {
-    if (this.serieService.excluir(this.serie)) {
-      this.presentAlert('Catalogo', 'Excluir', 'Exclusão Realizada');
-      this.router.navigate(['/home']);
-    } else {
-      this.presentAlert('Catalogo', 'Excluir', 'Produto Não Encontrado!');
-    }
+  private excluirSerie(){
+    this.serieFS.excluirSerie(this.serie)
+    .then(()=>{
+      this.presentAlert("Catalogo", "Sucesso", "Serie Excluida!");
+      this.router.navigate(["/home"]);
+    })
+    .catch((error)=>{
+      this.presentAlert("Catalogo", "Erro", "Erro ao excluir");
+      console.log(error);
+    })
   }
 
-irParaHome(){
+  irParaHome(){
+    this.router.navigate(["/home"]);
+  }
 
-
-
-
-   this.router.navigate(["/home"]);
-
-
- }
-
-
-
-
-
-  async presentAlert(cabecalho : string, subcabecalho: string,mensagem : string) {
+  async presentAlert(header: string, subHeader: string, message: string) {
     const alert = await this.alertController.create({
-      header: cabecalho,
-      subHeader: subcabecalho,
-      message: mensagem,
+      header: header,
+      subHeader: subHeader,
+      message: message,
       buttons: ['OK'],
     });
 
     await alert.present();
   }
-  async presentAlertConfirm(cabecalho : string, subcabecalho: string,mensagem : string) {
+
+  async presentAlertConfirm(header: string, subHeader: string, message: string) {
     const alert = await this.alertController.create({
-      header: cabecalho,
-      subHeader: subcabecalho,
-      message: mensagem,
+      header: header,
+      subHeader: subHeader,
+      message: message,
       buttons: [
         {
           text: 'Cancelar',
@@ -149,8 +128,6 @@ irParaHome(){
         },
       ],
     });
-
     await alert.present();
   }
-
- }
+}
